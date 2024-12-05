@@ -45,7 +45,7 @@ public class RecursiveTypeDescriptorTests {
   /**
    * <pre>
    *  Why does this object implement the Map interface and throw diff stacktrace?
-   *  I think this main reason same of test1, but some different in {@link ResolvableType#as(Class)}:
+   *  I think this main reason same of test1, but some different in {@link ResolvableType#as(Class)}(call on {@link org.springframework.core.convert.TypeDescriptor#equals} ---> {@link TypeDescriptor#getMapKeyTypeDescriptor()}):
    *  <blockquote><pre>
    *  for (ResolvableType interfaceType : getInterfaces()) {
    * 	ResolvableType interfaceAsType = interfaceType.as(type);
@@ -70,6 +70,7 @@ public class RecursiveTypeDescriptorTests {
    * 			}
    * 		......
    *  </pre></blockquote>
+   *
    *  </pre>
    *
    *
