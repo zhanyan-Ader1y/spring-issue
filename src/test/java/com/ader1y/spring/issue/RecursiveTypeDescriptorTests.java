@@ -17,6 +17,18 @@ public class RecursiveTypeDescriptorTests {
   /**
    * <pre>
    *  On this test case, stackoverflow start at {@link org.springframework.core.ResolvableType#equals}(ResolvableType.java:1023).
+   *  <blockquote><pre>
+   *  public boolean equals(@Nullable Object other) {
+   *  ...
+   *      if (...
+   *        !ObjectUtils.nullSafeEquals(
+   *            this.variableResolver.getSource(),
+   *            otherType.variableResolver.getSource()
+   *        ))) {
+   * 		  return false;
+   * 	  }
+   *  }
+   *  </pre></blockquote>
    *  The reason for infinite recursion is {@link ResolvableType.VariableResolver#getSource()} return cycle object likes:
    *  <blockquote><pre>
    *      class A extends HashMap<A, B>{}
